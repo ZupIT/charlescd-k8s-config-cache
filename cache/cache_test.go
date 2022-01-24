@@ -5,8 +5,8 @@ import (
 	. "github.com/onsi/ginkgo"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
-	"github.com/thallesfreitaszup/lib-kustomize/cache"
-	"github.com/thallesfreitaszup/lib-kustomize/cache/mocks"
+	"github.com/zupIT/charlescd_k8s_config_cache/cache"
+	"github.com/zupIT/charlescd_k8s_config_cache/cache/mocks"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"net/http"
 )

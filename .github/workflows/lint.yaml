@@ -1,0 +1,21 @@
+name: Lint files
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions: read-all
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 #v2.4.0
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@861262b71f42542304a28afe0b396e788e6e4638 #v1.43.0
+        with:
+          version: v1.42.0
