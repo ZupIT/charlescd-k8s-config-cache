@@ -1,0 +1,33 @@
+revive:
+  ignore-generated-header: true
+  severity: error
+linters:
+  disable-all: true
+  enable:
+    - govet
+    - gosimple
+    - nakedret
+    - unconvert
+    - errcheck
+    - gofmt
+    - errcheck
+    - ineffassign
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - varcheck
+    - asciicheck
+    - depguard
+    - dogsled
+    - dupl
+    - exportloopref
+    - gocyclo
+    - goheader
+    - gomodguard
+    - goprintffuncname
+    - misspell
+    - nakedret
+    - rowserrcheck
+    - sqlclosecheck
+    - unconvert
