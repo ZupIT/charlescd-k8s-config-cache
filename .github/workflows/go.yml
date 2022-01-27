@@ -1,0 +1,51 @@
+#
+# Copyright 2022 ZUP IT SERVICOS EM TECNOLOGIA E INOVACAO SA
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579 #v2.4.0
+
+    - name: Set up Go
+      uses: actions/setup-go@424fc82d43fa5a37540bae62709ddcc23d9520d4 #v2.1.5
+      with:
+        go-version: 1.17
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v -coverprofile=coverage.cov ./cache
+
+    - name: Tests coverage
+      uses: codecov/codecov-action@f32b3a3741e1053eb607407145bc9619351dc93b #v2;1;0
+      with:
+        file: coverage.cov
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
+    - name: Horusec Security
+      run: |
+        curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
+        horusec start -p . -n="kustomize" -u="https://api-horusec.zup.com.br"
