@@ -44,7 +44,6 @@ jobs:
       with:
         file: coverage.cov
         fail_ci_if_error: true
-        token: ${{ secrets.CODECOV_TOKEN }}
     - name: Horusec Security
       run: |
         curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash -s latest
